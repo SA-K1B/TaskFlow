@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="../../media/fav-icon.png" type="image/png" />
+    <title>TaskFlow</title>
+    <style>
+      body {
+        font-family: "Poppins", sans-serif;
+        background: #f9e6fa;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      section {
+        margin-top: 40px;
+      }
+      h1 {
+        color: #d9534f;
+        font-size: 40px;
+        font-weight: 600;
+        margin-top: -20px;
+        text-align: center;
+      }
+
+      p {
+        color: #444;
+        font-size: 25px;
+        font-weight: 500;
+        text-align: center;
+        margin-top: -20px;
+      }
+    
+      a {
+        text-decoration: none;
+        background-color: black;
+        color: white;
+        padding: 6px 15px;
+        border-radius: 5px;
+        font-size: 16px;
+        font-weight: 500;
+      }
+      a:hover {
+        background-color: #398378;
+        color: white;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <section>
+      <img src="../media/error-img.png" alt="" />
+      <h1>Error Occurred</h1>
+      <p>{{ error_message }}</p>
+      <div class="button">
+        <a href="{% url 'room_details' room.id %}">Back to Room</a>
+      </div>
+    </section>
+  </body>
+</html>

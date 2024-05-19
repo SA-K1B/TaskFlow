@@ -1,0 +1,119 @@
+<!-- myapp/templates/myapp/login.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="media/fav-icon.png" type="image/png">
+    <title>TaskFlow</title>
+    <style>
+      body {
+        font-family: "Poppins", sans-serif;
+        background: #f9e6fa;
+      }
+      /* div {
+        background-color: #ffffff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        text-align: center;
+      } */
+      h1 {
+        font-size: 60px;
+        font-weight: 600;
+        color: black;
+      }
+      h2 {
+        font-size: 30px;
+        font-weight: 600;
+        color: #398378;
+      }
+      h3 {
+        font-size: 20px;
+        font-weight: 500;
+      }
+      h4 {
+        color: #444;
+        font-size: 18px;
+        font-weight: 500;
+        text-align: justify;
+      }
+      a {
+        text-decoration: none;
+        background-color: #398378;
+        color: white;
+        padding: 10px 20px;
+        margin-right: 20px;
+        border-radius: 5px;
+        font-weight: 500;
+        transition: transform 0.3s ease-in-out;
+      }
+      a:hover {
+        background-color: white;
+        color: #398378;
+        cursor: pointer;
+        transform: scale(1.2);
+      }
+      .title {
+        display: flex;
+        align-items: flex-start;
+      }
+      .main {
+        display: flex;
+        justify-content: space-around;
+      }
+      .info {
+        width: 600px;
+      }
+      /* .side-img{
+        border: 4px solid white;
+        border-radius: 10px;
+      } */
+    </style>
+  </head>
+  <body>
+    <div class="title">
+      <img
+        src="media/transparent.png"
+        style="
+          width: 100px;
+          height: 100px;
+          margin-top: 30px;
+          margin-left: 60px;
+          margin-right: 10px;
+        "
+        alt=""
+      />
+      <h1>Task<span style="color: #398378">Flow</span></h1>
+    </div>
+    <div class="main">
+      <div class="info">
+        <h2>Your Ultimate Project Companion</h2>
+        <h4>
+          Embarking on a university project can be both exhilarating and
+          challenging. That's why we created TaskFlow, a dedicated platform
+          designed to streamline your project management experience and elevate
+          your academic success. TaskFlow simplifies project planning with
+          intuitive tools to help you outline tasks, set deadlines, and create
+          milestones. Our user-friendly interface ensures that you can focus on
+          your project's substance rather than grappling with complex planning
+          processes.
+        </h4>
+        <div>
+          <h3>You can start the journey as</h3>
+          <a href="{% url 'student_login' %}">Student</a>
+          <a href="{% url 'teacher_login' %}">Teacher</a>
+        </div>
+      </div>
+      <div class="side-img">
+        <img src="media/side-img-05.png" alt="" />
+      </div>
+    </div>
+  </body>
+</html>

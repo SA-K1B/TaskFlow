@@ -1,0 +1,114 @@
+<!-- templates/lab_tasks.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="../../media/fav-icon.png" type="image/png" />
+    <title>TaskFlow</title>
+    <style>
+      body {
+        font-family: "Poppins", sans-serif;
+        background: white;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      section {
+        display: flex;
+        margin-top: 8%;
+      }
+      .left {
+        margin-right: 100px;
+        margin-left: 100px;
+      }
+      .right {
+        margin-left: 100px;
+        margin-right: 100px;
+      }
+
+      h3 {
+        color: #398378;
+        font-size: 40px;
+        font-weight: 600;
+        margin-bottom: 20px;
+      }
+
+      ul {
+        list-style-type: decimal-leading-zero;
+        font-size: 20px;
+        font-weight: 500;
+        padding: 0;
+        margin-bottom: 10px;
+      }
+
+      form {
+        margin-top: 10px;
+      }
+
+      input[type="file"] {
+        margin-right: 10px;
+      }
+      a {
+        text-decoration: none;
+        color: #0066cc;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+      .button{
+        margin-top: 20px;
+      }
+      .button a {
+        font-family: "Poppins", sans-serif;
+        background-color: #398378;
+        color: #ffffff;
+        padding: 6px 15px;
+        margin-top: 10px;
+        border: none;
+        border-radius: 4px;
+        font-size: 18px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+      .button a:hover {
+        text-decoration: none;
+        background-color: black;
+        color: #398378;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+
+  <body>
+    <section>
+      <div class="left">
+        <h3>Lab Tasks</h3>
+        <ul>
+          {% for lab_task in lab_tasks %}
+          <li><strong>Title:</strong> {{ lab_task.title }}<br /></li>
+          <!-- File upload form for each lab task -->
+          <a href="{% url 'feedback_list' lab_task.id %}">See Feedback</a>
+          {% endfor %}
+        </ul>
+        <div class="button">
+          <a href="{% url 'room_details' room.id %}">Back to Room</a>
+        </div>
+      </div>
+      <div class="right">
+        <img src="../media/feedback.jpg" alt="" />
+      </div>
+    </section>
+  </body>
+</html>

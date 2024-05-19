@@ -1,0 +1,115 @@
+<!-- templates/registration/student_registration.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="../media/fav-icon.png" type="image/png">
+    <title>TaskFlow</title>
+    <style>
+      body {
+        font-family: "Poppins", sans-serif;
+        background: #eeeff1;
+        margin-top: 60px;
+        padding: 20px;
+        display: flex;
+        justify-content: center;
+      }
+      .reg-info {
+        width: 500px;
+        padding: 20px 30px;
+        background-color: #fff;
+        border-radius: 10px;
+      }
+
+      /* form {
+        background-color: #ffffff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        text-align: center;
+      } */
+
+      h2 {
+        font-size: 35px;
+        font-weight: 600;
+        color: #398378;
+        margin-bottom: -1px;
+      }
+      label {
+        display: block;
+        margin-top: 10px;
+        color: #444;
+        font-size: 18px;
+      }
+      input {
+        font-family: "Poppins", sans-serif;
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        margin-bottom: 16px;
+        box-sizing: border-box;
+        border: 2px solid #ccc;
+        border-radius: 5px;
+      }
+      input[type="submit"] {
+        background-color: #398378;
+        color: #ffffff;
+        cursor: pointer;
+        border: none;
+        border-radius: 5px;
+        margin-top: 8px;
+        padding: 8px 12px;
+        font-weight: 500;
+        font-size: 20px;
+      }
+      input[type="submit"]:hover {
+        background-color: black;
+        color: #398378;
+        cursor: pointer;
+      }
+      a {
+        text-decoration: none;
+        background-color: black;
+        color: white;
+        padding: 8px 20px;
+        border-radius: 5px;
+        font-weight: 500;
+      }
+      a:hover {
+        background-color: #398378;
+        color: white;
+        cursor: pointer;
+      }
+      .back {
+        margin-bottom: 10px;
+        margin-top: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="reg-info">
+      <form method="post" action="">
+        {% csrf_token %}
+        <h2>Student Register</h2>
+        <label for="username">Username:</label>
+        <input type="text" name="username" required />
+        <label for="email">Email:</label>
+        <input type="email" name="email" required />
+        <label for="password">Password:</label>
+        <input type="password" name="password" required />
+        <input type="submit" value="Register" />
+      </form>
+      <div class="back">
+        <a href="{% url 'login' %}">Back to Home</a>
+      </div>
+    </div>
+  </body>
+</html>

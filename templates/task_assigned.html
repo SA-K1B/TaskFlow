@@ -1,0 +1,21 @@
+<!-- templates/email/task_assigned.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>New Task Assigned</title>
+  </head>
+  <body>
+    <p>Hello {{ assigned_to.username }},</p>
+    <p>You have been assigned a new task by your team leader :</p>
+    <ul>
+      <li><strong>Title:</strong> {{ title }}</li>
+      <li><strong>Description:</strong> {{ description }}</li>
+      <li><strong>Deadline:</strong> {{ deadline }}</li>
+    </ul>
+    <p>Please log in to your account to view the details.</p>
+    <p>Best regards,<br />Your Team,{{ room }}</p>
+  </body>
+</html>

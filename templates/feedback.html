@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="../../media/fav-icon.png" type="image/png" />
+    <title>TaskFlow</title>
+    <style>
+      body {
+        font-family: "Poppins", sans-serif;
+        background: #f9e6fa;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      section {
+        width: 600px;
+        background-color: #ffffff;
+        padding: 20px;
+        margin-top: 40px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      img {
+        width: 600px;
+        border-radius: 5px;
+      }
+      .container {
+        border: 2px solid gray;
+        border-radius: 5px;
+        margin-top: 20px;
+        font-size: 18px;
+        font-weight: 500;
+        padding: 20px;
+        text-align: center;
+        margin-bottom: 15px;
+      }
+      .no-feedback {
+        color: #ff7276;
+      }
+      .button {
+        margin-top: 20px;
+        margin-bottom: 10px;
+      }
+      .button a {
+        font-family: "Poppins", sans-serif;
+        background-color: #398378;
+        color: #ffffff;
+        padding: 6px 15px;
+        margin-top: 10px;
+        border: none;
+        border-radius: 4px;
+        text-decoration: none;
+        font-size: 18px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+      .button a:hover {
+        text-decoration: none;
+        background-color: black;
+        color: #398378;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <section>
+      <div class="image">
+        <img src="../media/feedback-individual.jpg" alt="" />
+      </div>
+      <div class="details">
+        {% if feed.content %}
+        <div class="container">{{ feed.content }}</div>
+        {% else %}
+        <div class="container no-feedback">There is no feedback yet</div>
+        {% endif %}
+        <div class="button">
+          <a href="{% url 'room_details' room.id %}">Back to Room</a>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

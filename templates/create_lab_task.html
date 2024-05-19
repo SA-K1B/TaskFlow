@@ -1,0 +1,143 @@
+<!-- templates/create_lab_task.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="../../media/fav-icon.png" type="image/png" />
+    <title>TaskFlow</title>
+    <style>
+      body {
+        font-family: "Poppins", sans-serif;
+        background: #f9e6fa;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      section {
+        width: 500px;
+        background-color: #ffffff;
+        padding: 20px;
+        margin-top: 40px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      h2 {
+        color: #398378;
+        margin-top: -1px;
+        font-size: 25px;
+        font-weight: 600;
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 8px;
+        color: #444;
+        font-size: 18px;
+        font-weight: 500;
+      }
+
+      textarea,
+      input {
+        font-family: "Poppins", sans-serif;
+        width: 100%;
+        padding: 8px;
+        padding-left: 15px;
+        margin-top: 5px;
+        margin-bottom: 10px;
+        box-sizing: border-box;
+        border: 1px solid #cccccc;
+        border-radius: 4px;
+        font-size: 16px;
+        font-weight: 500;
+      }
+
+      button {
+        font-family: "Poppins", sans-serif;
+        background-color: #398378;
+        color: #ffffff;
+        padding: 6px 15px;
+        margin-top: 10px;
+        border: none;
+        border-radius: 4px;
+        font-size: 16px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      button:hover {
+        background-color: black;
+        color: #398378;
+        cursor: pointer;
+      }
+
+      p {
+        color: red;
+      }
+      div {
+        display: flex;
+        justify-content: space-between;
+      }
+      a {
+        text-decoration: none;
+        background-color: #398378;
+        margin-top: 10px;
+        color: white;
+        padding: 6px 15px;
+        border-radius: 5px;
+        font-size: 16px;
+        font-weight: 500;
+      }
+      a:hover {
+        background-color: black;
+        color: white;
+        cursor: pointer;
+      }
+      .btn{
+        margin-bottom: 20px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <section>
+      <h2>Assign Lab Task</h2>
+      {% if error %}
+      <p>{{ error }}</p>
+      {% endif %}
+
+      <form method="post" action="{% url 'create_lab_task' %}">
+        {% csrf_token %}
+
+        <!-- New field for title -->
+        <label for="title">Title:</label>
+        <input type="text" id="title" name="title" required />
+
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" required></textarea>
+
+        <label for="deadline">Deadline:</label>
+        <input type="datetime-local" id="deadline" name="deadline" required />
+
+        <div class="btn">
+          <button type="submit">Create Lab Task</button>
+          <a href="{% url 'teacher_lab_tasks' %}">Uploaded Tasks</a>
+        </div>
+        <a href="{% url 'login' %}">Log Out</a>
+      </form>
+    </section>
+ 
+  </body>
+</html>

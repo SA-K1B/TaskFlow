@@ -1,0 +1,28 @@
+from django.urls import path
+from . import views
+urlpatterns = [
+    # path('',views.home,name="home"),
+    path('teacher_login', views.teacher_login, name='teacher_login'),
+    path('', views.login_view, name='login'),
+    path('student_login', views.student_login, name='student_login'),
+    path('otp-verification/', views.otp_verification_view, name='otp_verification'),
+    path('student-registration/', views.student_registration, name='student_registration'),
+    path('room_list/', views.room_list, name='room_list'),
+    path('create_room/', views.create_room, name='create_room'),
+    path('room_details/<str:id>/', views.room_details, name='room_details'),
+    path('enter_room/<str:id>/', views.enter_room, name='enter_room'),
+    path('create_lab_task/', views.create_lab_task, name='create_lab_task'),
+    path('lab_task/', views.lab_task, name='lab_task'),
+    path('upload/<str:id>', views.upload, name='upload'),
+    path('teacher_lab_tasks/', views.teacher_lab_tasks, name='teacher_lab_tasks'),
+    path('lab_files/<str:id>', views.lab_files, name='lab_files'),
+    path('lab_files/<str:id>', views.lab_files, name='lab_files'),    
+    path('feedback/<str:id>', views.feedback, name='feedback'), 
+    path('feedback_list/<str:id>', views.feedback_list, name='feedback_list'),
+    path('lab_tasks_feed/', views.lab_tasks_feed, name='lab_tasks_feed'),
+    path('create-task/', views.create_task, name='create_task'),
+    path('logout/', views.logout_view, name='logout'),
+    path('tasks/', views.tasks, name='tasks'),
+    path('update_task_status/<int:task_id>/<str:new_status>/', views.update_task_status, name='update_task_status'),
+    path('dashboard/', views.dashboard, name='dashboard'),
+]

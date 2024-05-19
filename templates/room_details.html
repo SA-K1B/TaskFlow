@@ -1,0 +1,175 @@
+<!-- templates/room_details.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="../../media/fav-icon.png" type="image/png" />
+    <title>TaskFlow</title>
+    <style>
+      body {
+        font-family: "Poppins", sans-serif;
+        background: #f9e6fa;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .sidebar {
+        width: 30%;
+        padding: 15px;
+        margin-top: -20px;
+        box-sizing: border-box;
+      }
+      .sidebar p{
+        font-size: 18px;
+        font-weight: 500;
+        color: #444;
+      }
+      .content {
+        flex-grow: 1;
+        padding: 20px;
+        box-sizing: border-box;
+      }
+
+      h2 {
+        margin-bottom: 20px;
+      }
+
+      ul {
+        /* list-style-type: none; */
+        padding: 0;
+        margin: 0;
+        margin-left: 10px;
+      }
+
+      li {
+        color: #444;
+        font-size: 18px;
+        font-weight: 500;
+        margin-bottom: 10px;
+      }
+
+      .links {
+        background-color: #398378;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        margin: 0;
+        padding: 30px;
+      }
+      .title {
+        margin-left: 50px;
+        font-size: 40px;
+        font-weight: 500;
+        color: white;
+      }
+      .button {
+        margin-right: 150px;
+      }
+      .button a {
+        display: inline-block;
+        color: white;
+        font-weight: 500;
+        font-size: 20px;
+        text-align: center;
+        padding: 14px 40px;
+        text-decoration: none;
+        transition: transform 0.3s ease-in-out;
+      }
+      .button a:hover {
+        transform: scale(1.2);
+        cursor: pointer;
+      }
+      .details {
+        display: flex;
+        justify-content: space-between;
+      }
+      .user {
+        font-size: 30px;
+        font-weight: 600;
+        text-align: center;
+        margin-top: 15px;
+      }
+      .features {
+        display: flex;
+        flex-direction: column;
+        background-color: #398378;
+        padding: 20px;
+        margin-left: 70px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      .features a{
+        color: white;
+        text-decoration: none;
+        font-size: 18px;
+        font-weight: 500;
+        margin-bottom: 10px;
+      }
+      .features a:hover{
+        color: black;
+      }
+      .project {
+        display: flex;
+        background-color: #ffffff;
+        margin-right: 70px;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      h2 {
+        font-size: 25px;
+        font-weight: 500;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="links">
+      <div class="title">TaskFlow</div>
+      <div class="button">
+        <a href="{% url 'login' %}">Home</a>
+        <a href="{% url 'logout' %}">Logout</a>
+      </div>
+    </div>
+    <div class="user">
+      <p>Hello <span style="color: #398378">{{ request.user }}</span></p>
+    </div>
+    <div class="details">
+      <div class="features">
+        <a href="{% url 'create_task' %}">Create Task</a>
+        <a href="{% url 'lab_task' %}">Upload Tasks</a>
+        <a href="{% url 'tasks' %}">Tasks</a>
+        <a href="{% url 'dashboard' %}">Dashboard</a>
+        <a href="{% url 'lab_tasks_feed' %}">View All Feedbacks</a>
+      </div>
+      <div class="project">
+        <div class="sidebar">
+          <h2>Team Members</h2>
+          <ul>
+            {% for member in team_members %}
+            <li>{{ member.username }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+        <div class="sidebar">
+          <h2>Team Leader</h2>
+          <p>{{ team_leader.username }}</p>
+        </div>
+        <div class="sidebar">
+          <h2>{{ room_name }}</h2>
+          <!-- Your room content goes here -->
+          <p>{{room_description}}</p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

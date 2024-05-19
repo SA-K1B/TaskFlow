@@ -1,0 +1,111 @@
+<!-- templates/lab_tasks.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="../../media/fav-icon.png" type="image/png" />
+    <title>TaskFlow</title>
+    <style>
+      body {
+        font-family: "Poppins", sans-serif;
+        background: #f9e6fa;
+        margin: 0;
+        padding: 0;
+      }
+      section {
+        display: flex;
+        justify-content: space-between;
+      }
+      img {
+        margin-top: 20%;
+        margin-left: 20%;
+      }
+      .details {
+        margin-top: 30px;
+        margin-right: 20%;
+      }
+      h3 {
+        font-size: 30px;
+        font-weight: 600;
+        color: #398378;
+        margin-bottom: 20px;
+      }
+
+      ul {
+        list-style: none;
+      }
+      li {
+        background: white;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        padding: 20px 30px;
+        font-size: 18px;
+        font-weight: 500;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+      }
+
+      form {
+        margin-top: 10px;
+      }
+
+      a {
+        text-decoration: none;
+        background-color: #398378;
+        color: white;
+        padding: 8px 15px;
+        margin-right: 20px;
+        border-radius: 5px;
+        font-size: 16px;
+        font-weight: 500;
+        transition: transform 0.3s ease-in-out;
+      }
+      a:hover {
+        background-color: white;
+        color: #398378;
+        cursor: pointer;
+        transform: scale(1.2);
+      }
+      li a:hover {
+        background-color: black;
+      }
+      .image a {
+        margin-top: 20%;
+        margin-left: 20%;
+      }
+    </style>
+  </head>
+
+  <body>
+    <section>
+      <div class="image">
+        <img src="../media/lab-task.png" alt="" />
+        <a href="{% url 'room_details' room.id %}">Back to Room</a>
+      </div>
+      <div class="details">
+        <h3>Upload Tasks</h3>
+        <ul>
+          {% for lab_task in lab_tasks %}
+          <li>
+            <strong>Title:</strong> {{ lab_task.title }}<br />
+            <strong>Description:</strong> {{ lab_task.description }}<br />
+            <strong>Deadline:</strong> {{lab_task.deadline }}<br /><br />
+            <!-- File upload form for each lab task -->
+            <a href="{% url 'upload' lab_task.id %}">Upload</a>
+          </li>
+          {% endfor %}
+        </ul>
+        {% comment %} <a href="{% url 'room_details' %}">Back To Room</a>
+        {% endcomment %}
+      </div>
+    </section>
+  </body>
+</html>

@@ -1,0 +1,164 @@
+<!-- templates/teacher_lab_files.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="../../media/fav-icon.png" type="image/png" />
+    <title>TaskFlow</title>
+    <style>
+      body {
+        font-family: "Poppins", sans-serif;
+        background: #f9e6fa;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      section {
+        width: 600px;
+        background-color: #ffffff;
+        padding: 20px;
+        margin-top: 80px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      h3 {
+        margin-top: -1px;
+        font-size: 25px;
+        font-weight: 600;
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      ul {
+        list-style-type: none;
+        padding: 0;
+      }
+
+      li {
+        margin-bottom: 10px;
+      }
+      b {
+        font-size: 20px;
+        font-weight: 600;
+        color: #398378;
+      }
+      p {
+        font-size: 18px;
+        font-weight: 500;
+        margin-bottom: 5px;
+      }
+
+      a {
+        text-decoration: none;
+        color: #0066cc;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+      textarea,
+      input {
+        font-family: "Poppins", sans-serif;
+        width: 70%;
+        padding: 8px;
+        padding-left: 15px;
+        margin-top: 5px;
+        margin-right: 20px;
+        margin-bottom: 10px;
+        box-sizing: border-box;
+        border: 1px solid #cccccc;
+        border-radius: 4px;
+        font-size: 16px;
+        font-weight: 500;
+      }
+      button {
+        font-family: "Poppins", sans-serif;
+        background-color: #398378;
+        color: #ffffff;
+        height: 40px;
+        padding: 0px 10px;
+        margin-top: 10px;
+        border: none;
+        border-radius: 4px;
+        font-size: 16px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      button:hover {
+        background-color: black;
+        color: #398378;
+        cursor: pointer;
+      }
+
+      form {
+        display: flex;
+      }
+      .button a {
+        font-family: "Poppins", sans-serif;
+        background-color: #398378;
+        color: #ffffff;
+        padding: 6px 15px;
+        margin-top: 10px;
+        border: none;
+        border-radius: 4px;
+        font-size: 18px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+      .button a:hover {
+        text-decoration: none;
+        background-color: black;
+        color: #398378;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+
+  <body>
+    <section>
+      <h3>
+        Lab Files for <span style="color: #398378">{{ lab_task.title }}</span>
+      </h3>
+      <ul>
+        {% for lab_file in lab_files %}
+        <li>
+          {% if lab_file.file %}
+          <p>
+            <b>Team:</b> {{ lab_file.team.project_name }} File:
+            <a href="{{ lab_file.file.url }}" target="_blank">Download File</a>
+          </p>
+          <form method="post" action="{% url 'feedback' lab_file.id %}">
+            {% csrf_token %}
+            <textarea
+              name="feedback_content"
+              placeholder="Provide feedback"
+            ></textarea>
+            <button type="submit">SEND</button>
+          </form>
+          {% else %}
+          <p>No file uploaded for this task.</p>
+          {% endif %}
+        </li>
+        {% endfor %}
+      </ul>
+      <div class="button">
+        <a href="{% url 'teacher_lab_tasks' %}">Back</a>
+      </div>
+    </section>
+  </body>
+</html>

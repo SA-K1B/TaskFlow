@@ -1,0 +1,120 @@
+<!-- templates/task_list.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="../../media/fav-icon.png" type="image/png" />
+    <title>TaskFlow</title>
+    <style>
+      body {
+        font-family: "Poppins", sans-serif;
+        background: #f9e6fa;
+        margin-top: 40px;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      section {
+        width: 400px;
+        background-color: #ffffff;
+        padding: 20px;
+        margin-top: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      h3 {
+        color: #398378;
+        margin-top: -1px;
+        font-size: 25px;
+        font-weight: 600;
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        margin-top: -10px;
+      }
+
+      li {
+        margin-bottom: 15px;
+        padding: 5px 15px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      p {
+        margin-bottom: -5px;
+        font-size: 18px;
+        font-weight: 500;
+      }
+      .para {
+        margin-bottom: 15px;
+      }
+      .mark{
+        margin-bottom: 15px;
+      }
+      .ongoing {
+        background-color: #ffcccc; /* Light red for ongoing tasks */
+      }
+
+      .done {
+        background-color: #ccffcc; /* Light green for done tasks */
+      }
+      a {
+        text-decoration: none;
+        background-color: #398378;
+        color: white;
+        padding: 6px 15px;
+        border-radius: 5px;
+        font-size: 16px;
+        font-weight: 500;
+      }
+      a:hover {
+        background-color: black;
+        color: white;
+        cursor: pointer;
+      }
+    </style>
+    <!-- ... (your existing head content) ... -->
+  </head>
+  <body>
+    <section>
+      <h3>Your Tasks</h3>
+      <ul>
+        {% for task in tasks %}
+        <li
+          class="{% if task.status == 'Ongoing' %}ongoing{% elif task.status == 'Done' %}done{% endif %}"
+        >
+          <div class="para">
+            <p><b>Title:</b> {{ task.title }}</p>
+            <p><b>Description:</b> {{ task.description }}</p>
+            <p><b>Deadline:</b> {{ task.deadline }}</p>
+            <p><b>Status:</b> {{ task.status }}</p>
+          </div>
+          {% if task.status == 'Ongoing' %}
+          <div class="mark">
+            <a href="{% url 'update_task_status' task.id 'Done' %}"
+              >Mark as Done</a
+            >
+          </div>
+          {% endif %}
+        </li>
+        {% endfor %}
+      </ul>
+      <div class="back">
+        <a href="{% url 'room_details' room.id %}">Back to Room</a>
+      </div>
+    </section>
+  </body>
+</html>
