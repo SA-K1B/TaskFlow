@@ -22,7 +22,7 @@ class LabTask(models.Model):
 class LabFile(models.Model):
     lab_task = models.ForeignKey(LabTask, on_delete=models.CASCADE)
     team = models.ForeignKey(ProjectRoom, on_delete=models.CASCADE)
-    file = models.FileField(upload_to='', null=True, blank=True)
+    file = models.FileField(upload_to='./media', null=True, blank=True)
 
     def __str__(self):
         return f"File for Lab Task: {self.lab_task.title} - Team: {self.team.project_name}"
