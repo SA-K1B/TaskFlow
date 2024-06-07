@@ -14,6 +14,7 @@ import string
 from django.contrib.auth import logout
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
+from .tasks import send_email_task
 def login_view(request):
     return render(request,'home.html')
 def teacher_login(request):
@@ -25,13 +26,19 @@ def teacher_login(request):
             # Generate OTP
             otp = str(random.randint(100000, 999999))
             # Send OTP to the user's email
-            send_mail(
+            # send_mail(
+            #     'Login OTP',
+            #     f'Your OTP is: {otp}',
+            #     settings.EMAIL_HOST_USER,
+            #     [email],
+            #     fail_silently=False,
+            # )
+            send_email_task.delay(
                 'Login OTP',
                 f'Your OTP is: {otp}',
                 settings.EMAIL_HOST_USER,
                 [email],
-                fail_silently=False,
-            )
+                )
             # Store the OTP in the session for verification
             request.session['otp'] = otp
             request.session['email'] = email
@@ -92,13 +99,19 @@ def create_room(request):
         room.team_members.add(request.user)
         room.save()
         email=room.team_leader.email
-        send_mail(
-                'Room Id',
-                f'Your Room Id is: {room_id}\nShare this Id with your team members',
-                settings.EMAIL_HOST_USER,
-                [email],
-                fail_silently=False,
-            )
+        # send_mail(
+        #         'Room Id',
+        #         f'Your Room Id is: {room_id}\nShare this Id with your team members',
+        #         settings.EMAIL_HOST_USER,
+        #         [email],
+        #         fail_silently=False,
+        #     )
+        send_email_task.delay(
+            'Room Id',
+            f'Your Room Id is: {room_id}\nShare this Id with your team members',
+            settings.EMAIL_HOST_USER,
+            [email],
+        )    
         return redirect('room_details',id=room.id)  # Redirect to the student dashboard or any other desired page
     return render(request, 'create_room.html')
 def generate_unique_room_id():
@@ -149,7 +162,7 @@ def create_lab_task(request):
              message = render_to_string('email.html', context)
              plain_message = strip_tags(message)
             #  m="u1904059@student.cuet.ac.bd"
-             send_mail(subject, plain_message, 'taskflow.info@gmail.com', [room.team_leader.email], html_message=message)
+             send_email_task.delay(subject, plain_message, 'taskflow.info@gmail.com', [room.team_leader.email], html_message=message)
             # Send email notification to room leader
             #  send_mail(
             #     'New Lab Task',
@@ -255,7 +268,7 @@ def create_task(request):
             }
             message = render_to_string('task_assigned.html', context)
             plain_message = strip_tags(message)
-            send_mail(subject, plain_message, 'taskflow.info@gmail.com', [assigned_to.email], html_message=message)
+            send_email_task.delay(subject, plain_message, 'taskflow.info@gmail.com', [assigned_to.email], html_message=message)
             return redirect('create_task')
 
         except ValueError:

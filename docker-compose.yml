@@ -12,7 +12,10 @@ services:
     depends_on:
       - db
   db:
-    image: postgres
+    build:
+      context: ./postgres
+      dockerfile: Dockerfile
+    image: postgres:taskflow
     volumes:
       - ./data/db:/var/lib/postgresql/data
     environment:
@@ -20,5 +23,21 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
     container_name: postgres_db
+  redis:
+    image: redis
+    container_name: redis
+  celery:
+    restart: always
+    build: 
+      context: .
+    container_name: celery  
+    volumes:
+      - .:/django
+    command: celery -A Taskflow worker -l DEBUG
+    depends_on:
+      - app
+      - db
+      - redis
+        
     
         
